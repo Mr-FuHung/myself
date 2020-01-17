@@ -1,0 +1,55 @@
+@import './base.scss';
+html {
+    font-size: 100px;
+}
+
+body {
+    font-size: 0.14rem;
+    margin: 0.5rem auto 0;
+    color: #787978;
+    font-family: Microsoft Yahei;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    line-height: 1.5;
+    position: relative;
+    background: url(./assets/bg.jpg) repeat;
+}
+
+#app{
+    width: 100%;
+    
+   &>header {
+       text-align: center;
+       margin-bottom: 2em;
+            .routerActive{
+                text-decoration: underline;
+                }
+        &>.routerApp a {
+          color: #948c76;
+          margin: 0 1em;
+          font-size: .8em;
+        }
+        &>.myName{
+            font-size: 1.3em;
+            font-weight: 400;
+            padding: 0 .5em;
+            letter-spacing: .1em;
+            line-height: 2em;
+            margin: 2em 0;
+            display: inline-block;
+            color: #948c76;
+            background: #fdf4e8;
+        }
+        &>.myPicture img{
+            width: 40vw;
+            height: 40vw;
+            max-width: 120px;
+            max-height: 120px;
+            border-radius: 50%;
+        }
+    }
+    
+}
