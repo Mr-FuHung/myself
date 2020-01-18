@@ -17,7 +17,7 @@
       <div class="default">
         <div class="lightest p-t-0 p-b-0">
           <div class="row">
-            <div>● 张小月 | 女 | 1993</div>
+            <div>● 符洪 | 男 | 1993</div>
             <div>● 本科 | 西南科技大学 | 信息工程系</div>
             <div>● 前端开发 | 3 年工作经验</div>
           </div>
