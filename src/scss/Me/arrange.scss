@@ -57,6 +57,28 @@
                 }
             }
         }
+        span {
+            color: #3f1c1c;
+            position: relative;
+                width: 100%;
+                min-height: 1px;
+                padding-left: 15px;
+                padding-right: 15px;
+                padding-top: 10px!important;
+                padding-bottom: 10px!important;
+                a{
+                    color:#666;
+                }
+                
+                &:hover a{
+                    text-decoration:underline;
+                }
+        }
+        p {
+            margin-top: 0;
+            // margin-bottom: 1em;
+            background: none;
+        }
     }
     
 }

@@ -6,6 +6,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    redirect:'/me'//重定向到me
+  },
+  {
     path: '/me',
     name: 'me',
     component: Me
