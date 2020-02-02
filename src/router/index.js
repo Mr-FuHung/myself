@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect:'/me'//重定向到me
+    redirect: '/me'//重定向到me
   },
   {
     path: '/me',
@@ -17,18 +17,22 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
     path: '/live',
     name: 'live',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Live.vue')
+  },
+  {
+    path: '/see',
+    name: 'see',
+    component: () => import(/* webpackChunkName: "about" */ '../views/See.vue'),
+    // beforeEnter(to, from, next) {//包括子孙组件都会触发
+    //   console.log(from)
+    //   next()
+    // }
+    
   }
 ]
 

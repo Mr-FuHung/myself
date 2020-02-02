@@ -4,9 +4,20 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  strict: true,//严格模式不允许在vuex外修改state中的值
   state: {
+    active: false,
+    download: false
+  },
+  getters: {
   },
   mutations: {
+    changeActive(state, params) {
+      state.active = params;
+    },
+    downloadStatus(state, params) {
+      state.download = params;
+    }
   },
   actions: {
   },

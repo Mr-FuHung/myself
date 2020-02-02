@@ -46,7 +46,6 @@ export default {
   },
   methods: {},
   mounted() {
-    console.log(this.baseData);
   }
 };
 </script>

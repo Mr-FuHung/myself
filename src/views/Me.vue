@@ -1,11 +1,12 @@
 <template>
   <div class="me">
-    <arrange :base-data="item" v-for="(item,key,index) in meData" :key="index"/>
-    ......
+    <arrange :base-data="item" v-for="(item,key,index) in meData" :key="index" />......
   </div>
 </template>
 <script>
 import arrange from "../components/Me/arrange.vue";
+import { mapMutations } from "vuex";
+
 // @ is an alias to /src
 export default {
   name: "me",
@@ -107,6 +108,19 @@ export default {
   },
   components: {
     arrange
+  },
+  methods: {
+    ...mapMutations(["downloadStatus"])
+  },
+  mounted() {
+    this.downloadStatus(true); //显示download
+  },
+  // beforeRouteEnter(to, from, next) {
+  //   next();
+  // },
+  beforeRouteLeave(to, from, next) {
+    this.downloadStatus(false); //隐藏download
+    next();
   }
 };
 </script>
