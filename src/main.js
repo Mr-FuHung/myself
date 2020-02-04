@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import instance from './axiosConfig/axiosPublic';
+import instance from './axios/axiosPublic';
 
 import App from './App.vue';
 import router from './router';

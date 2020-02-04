@@ -36,7 +36,7 @@ export default {
       <div class="line"></div>
       <div class="art-content">
         <p class="art-title">
-          <a  href="javascript:;" @click="routerTo(essayData.id)"  v-text="essayData.title"></a>
+          <a href="javascript:;" @click="routerTo(essayData.id)" v-text="essayData.title"></a>
         </p>
         <div class="art-img" v-for="(url,ind) in JSON.parse(essayData.picture)" :key="ind">
           <img :src="url" alt="文章配图" />

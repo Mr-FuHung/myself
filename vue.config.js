@@ -1,14 +1,19 @@
+
 module.exports = {
+  configureWebpack: {
+    devServer: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8001',
+          changeOrigin: true,
+          pathRewrite: { '^/api': '' }
+        }
+      }
+    }
+  },
   publicPath: './',
-  // configureWebpack: {
-  //   devServer: {
-  //     proxy: {
-  //       '/api': {
-  //         target: 'http://localhost:8000',
-  //         changeOrigin: true,
-  //         pathRewrite: {'^/api' : ''}
-  //       }
-  //     }
-  //   }
-  // }
+
+  css: {
+    extract: false
+  }
 }
