@@ -1,7 +1,7 @@
 <script>
 import essay from "../components/Live/essay.vue";
-import loading from "../components/plugin/loading.vue";
 export default {
+  name:'live',
   data() {
     return {
       status: true,
@@ -31,8 +31,7 @@ export default {
   },
   components: {
     // essay: () => import("../components/Live/essay.vue"),
-    essay,
-    loading
+    essay
   }
 };
 </script>
@@ -51,6 +50,6 @@ export default {
   </div>
 </template>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 @import "../scss/Live/index.scss";
 </style>

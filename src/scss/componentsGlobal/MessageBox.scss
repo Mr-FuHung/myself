@@ -1,0 +1,30 @@
+.message {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  li {
+    box-shadow: #ccc 1px 1px 10px 2px;
+    margin-top: 2em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    padding: 8px 14px;
+    border-radius: 4px;
+    .pass {
+      color: #52c41a;
+    }
+    .err {
+      color: #f5222d;
+    }
+    svg {
+      vertical-align: middle;
+      width: 15px;
+      height: 15px;
+      margin-top: -2px;
+      margin-right: 1em;
+    }
+  }
+}

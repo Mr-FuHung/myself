@@ -6,6 +6,18 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '*',
+    // redirect(to) {
+    //   return { name: '404' }
+    // },
+    component: () => import('../views/404.vue')
+  },
+  // {
+  //   path: '/404',
+  //   name: '404',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/404.vue')
+  // },
+  {
     path: '/',
     redirect: '/me'//重定向到me
   },
@@ -15,14 +27,14 @@ const routes = [
     component: Me
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/leaveword',
+    name: 'leaveword',
+    component: () => import('../views/LeaveWord.vue')
   },
   {
     path: '/live',
     name: 'live',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Live.vue')
+    component: () => import('../views/Live.vue')
   },
   {
     path: '/see',
@@ -32,7 +44,7 @@ const routes = [
     //   console.log(from)
     //   next()
     // }
-    
+
   }
 ]
 
@@ -42,5 +54,7 @@ const router = new VueRouter({
   // mode: 'history',
   routes
 })
+// router.beforeEach((to, from, next) => {
 
+// });
 export default router

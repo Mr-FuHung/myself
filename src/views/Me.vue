@@ -19,7 +19,7 @@ export default {
             [
               "手机：17513131341",
               "Email：1002150110@qq.com",
-              "网站：www.Baron.com"
+              "网站：http://47.240.73.78"
             ]
           ]
         },
@@ -28,29 +28,29 @@ export default {
           list: [
             [
               "符洪 | 男 | 1996",
-              "本科 | 西南科技大学 | 信息工程系",
+              // "本科 | 郑州 | 计算机科学",
               "前端开发 | 3 年工作经验"
             ],
             ["期望职位：Web高级前端", "期望城市：上海"],
             [
               {
                 subTitle: "Github：",
-                url: "https://github.com/Redspitee",
-                text: "https://github.com/Redspitee"
+                url: "https://github.com/Mr-FuHung",
+                text: "https://github.com/Mr-FuHung"
               }
             ],
             [
               {
                 subTitle: "Gitee：",
-                url: "https://gitee.com/redspite",
-                text: "https://gitee.com/redspite"
+                url: "https://gitee.com/Mr-FuHung",
+                text: "https://gitee.com/Mr-FuHung"
               }
             ],
             [
               {
                 subTitle: "技术博客：",
-                url: "https://www.redspite.com",
-                text: "https://www.redspite.com"
+                url: "http://47.240.73.78:8888",
+                text: "http://47.240.73.78"
               }
             ]
           ]
@@ -63,22 +63,22 @@ export default {
                 subTitle: false,
                 url: "https://www.redspite.com",
                 text:
-                  "个人博客 - 使用 React + Redux + Ts + Antd + Koa 构建的个人网站，个人简历、文章及留言版展示"
+                  "个人博客 - 使用 Vue + Vue-Router + VueX + Vue-cli 构建的个人网站，个人简历、文章及留言版展示"
               }
             ],
             [
               {
                 subTitle: false,
                 text:
-                  "react-go-top - 基于react的回到顶部插件,发布在npm的插件包",
-                url: "https://www.redspite.com"
+                  "nodeMiniServer - 使用原生node搭建的迷你服务",
+                url: "https://github.com/Mr-FuHung/nodeMiniServer"
               }
             ],
             [
               {
                 subTitle: false,
-                text: " 早期博客 - 纯静态页面,百度SEO排名较靠前",
-                url: "https://www.redspite.com"
+                text: " 早期博客 - 纯静态页面（半成品），挂载在github访问速度很慢",
+                url: "https://mr-fuhung.github.io/vitae/dist/index.html"
               }
             ]
           ]
@@ -86,11 +86,11 @@ export default {
         skill: {
           title: "技能掌握",
           list: [
-            ["前端框架：Vue/React/微信小程序"],
-            ["前端工具：Webpack/Sass/Less/Cordova"],
-            ["后端框架：NodeJS/Koa"],
-            ["数据库相关：MongoDB"],
-            ["版本管理工具：Git/GitLab"]
+            ["前端框架：Vue/Jquery/微信小程序"],
+            ["前端工具：Webpack/Sass"],
+            ["后端框架：NodeJS/Express"],
+            ["数据库相关：Mysq;"],
+            ["版本管理工具：Git/Svn"]
           ]
         },
         worked: {

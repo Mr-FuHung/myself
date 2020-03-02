@@ -1,6 +1,5 @@
 <script>
 import { mapMutations } from "vuex";
-import circleLoading from "../components/plugin/circleLoading.vue";
 export default {
   name: "see",
   data() {
@@ -23,7 +22,9 @@ export default {
         if (result.data.returnCode === 0) {
           this.status = false;
           this.content = result.data.data;
-          console.log(result);
+          if (result.data.script) {
+            this.insetScript(JSON.parse(result.data.script));
+          }
         }
       })
       .catch(err => {
@@ -32,11 +33,17 @@ export default {
       });
   },
   methods: {
-    ...mapMutations(["changeActive"])
+    ...mapMutations(["changeActive"]),
+    insetScript(scriptList) {
+      scriptList.forEach(element => {
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = element;
+        page.appendChild(script);
+      });
+    }
   },
-  components: {
-    circleLoading
-  },
+
   beforeRouteEnter(to, from, next) {
     next();
   },
@@ -47,7 +54,7 @@ export default {
 };
 </script>
 <template>
-  <circleLoading v-if="status" />
+  <circleloading v-if="status" />
   <div class="artical-detail" v-else>
     <h1>{{content.title}}</h1>
     <div>{{content.description}}</div>

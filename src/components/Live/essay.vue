@@ -41,7 +41,7 @@ export default {
         <div class="art-img" v-for="(url,ind) in JSON.parse(essayData.picture)" :key="ind">
           <img :src="url" alt="文章配图" />
         </div>
-        <div class="art-detail">
+        <div class="art-detail" v-if="essayData.description!==''">
           <p v-text="essayData.description"></p>
         </div>
       </div>
@@ -49,6 +49,6 @@ export default {
   </div>
 </template>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 @import "../../scss/Live/essay.scss";
 </style>

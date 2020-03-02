@@ -70,7 +70,7 @@
       padding: 0 1em 1em 2em;
       overflow: hidden;
       .art-title {
-        margin: 3em 0 2em;
+        margin: 3em 0 1em;
         font-size: 1em;
         a {
           color: #444;
@@ -91,12 +91,12 @@
       .art-detail {
         width: 85%;
         line-height: 1.5em;
-        margin-top: 2em;
+        margin-top: 1em;
         font-size: 0.8em;
         p {
           text-align: justify;
-          height: 4.5em;
           overflow: hidden;
+          margin-bottom: 1em;
         }
       }
     }

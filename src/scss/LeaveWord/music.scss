@@ -1,0 +1,43 @@
+[hidden] {
+  display: none !important;
+}
+.musicPic {
+  z-index: 100;
+  cursor: pointer;
+  position: fixed;
+  width: 3em;
+  height: 3em;
+  bottom: 10%;
+  animation: rotate 3s linear infinite;
+  animation-play-state: paused;
+  transition: all 0.3s;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  &.rotate {
+    animation-play-state: running;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .musicPic {
+    left: 10%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .musicPic {
+    right: 10%;
+    bottom: 20%;
+  }
+}
+@keyframes rotate{
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(1turn);
+    transform: rotate(1turn);
+  }
+  
+}

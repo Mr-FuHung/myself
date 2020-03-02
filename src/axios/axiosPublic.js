@@ -15,6 +15,7 @@ var instance = axios.create({
     // },
     responseEncoding: 'utf8',//解码响应数据编码格式
     transformRequest: [function (data, headers) {//拦截发送数据
+        headers.token = localStorage.getItem('token')
         // headers.post={
         //     "Content-Type": "application/x-www-form-urlencoded;charset:UTF8"
         // }
