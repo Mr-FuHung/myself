@@ -25,7 +25,7 @@ export default {
           status: 0,
           reg: /^.{1,20}$/,
           //event: "keyup",
-          tips: ""
+          tips: "长度1-20"
         },
         {
           name: `密码(必填)`,
@@ -37,7 +37,7 @@ export default {
           status: 0,
           reg: /^[\S]{4,20}$/,
           //event: "keyup",
-          tips: ""
+          tips: "长度4-20"
         },
         {
           name: `邮箱(必填)`,
@@ -49,8 +49,20 @@ export default {
           status: 0,
           reg: /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
           //event: "keyup",
-          tips: ""
+          tips: "请填写正确格式"
         },
+        // {
+        //   name: `验证码`,
+        //   required: true,
+        //   placeholder: `xxxxxx`,
+        //   type: "text",
+        //   key: "checkCode",
+        //   value: "",
+        //   status: 0,
+        //   reg: /^[\d]{6}$/,
+        //   //event: "keyup",
+        //   tips: ""
+        // },
         {
           name: `手机(选填)`,
           required: false,
@@ -73,7 +85,7 @@ export default {
           status: 0,
           reg: /^[\d]{5,10}$/,
           //event: "keyup",
-          tips: ""
+          tips: "长度5-10，且必须为数字"
         },
         {
           name: `微信(选填)`,
@@ -85,7 +97,7 @@ export default {
           status: 0,
           reg: /^[\S]{5,20}$/,
           //event: "keyup",
-          tips: ""
+          tips: "长度5-10"
         },
         {
           name: `网站(选填)`,
@@ -97,7 +109,7 @@ export default {
           status: 0,
           reg: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/,
           //event: "keyup",
-          tips: ""
+          tips: "请填写正确格式"
         }
       ],
       signIn: [
@@ -123,7 +135,7 @@ export default {
           status: 0,
           reg: /^[\S]{4,20}$/,
           //event: "keyup",
-          tips: ""
+          tips: "长度4-20"
         }
       ],
       click: true
