@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["messagePush"]),
+    // ...mapActions(["messagePush"]),
     getWriteBack(item) {
       if (!item.writeBack) {
         this.$set(item, "status", 2);
@@ -92,7 +92,7 @@ export default {
     },
     write(item, ele) {
       if (!this.$store.state.user) {
-        this.messagePush({ flag: "err", text: "请先登录" });
+        // this.messagePush({ flag: "err", text: "请先登录" });
         return;
       }
       let params;
@@ -122,7 +122,7 @@ export default {
       })
         .then(result => {
           if (result.data.returnCode === 0) {
-            this.messagePush({ flag: "pass", text: result.data.returnMsg });
+            // this.messagePush({ flag: "pass", text: result.data.returnMsg });
             this.$emit("getleaveword", 1);
             this.content = "";
           }
@@ -142,7 +142,7 @@ export default {
       })
         .then(result => {
           if (result.data.returnCode === 0) {
-            this.messagePush({ flag: "pass", text: result.data.returnMsg });
+            // this.messagePush({ flag: "pass", text: result.data.returnMsg });
             // this.$emit("getleaveword", 1);
             this.updatelWriteBack(item);
             this.content = "";

@@ -1,5 +1,12 @@
+const path = require('path');
 module.exports = {
   configureWebpack: {
+    resolve: {
+      alias: {//别名
+        '@': path.resolve(__dirname, './src'),
+        // 'components': path.resolve(__dirname, './src/components'),
+      }
+    },
     devServer: {
       proxy: {
         '/api': {
@@ -14,7 +21,7 @@ module.exports = {
         }
       },
       port: 8001,     // 端口
-      host: '192.168.0.108'
+      // host: '192.168.0.108'
     },
 
   },

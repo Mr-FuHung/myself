@@ -8,9 +8,6 @@ export default {
       content: {}
     };
   },
-  beforeUpdate() {
-    this.changeActive("seeAcive"); //高亮点滴导航
-  },
   created() {
     this.$http({
       url: "/live/fileContent.ajax",
@@ -33,7 +30,6 @@ export default {
       });
   },
   methods: {
-    ...mapMutations(["changeActive"]),
     insetScript(scriptList) {
       scriptList.forEach(element => {
         let script = document.createElement("script");
@@ -48,7 +44,6 @@ export default {
     next();
   },
   beforeRouteLeave(to, from, next) {
-    this.changeActive(false); //取消高亮
     next();
   }
 };

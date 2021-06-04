@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     ...mapMutations(["userStatus"]),
-    ...mapActions(["messagePush"]),
+    // ...mapActions(["messagePush"]),
     showDialog() {
       this.$emit("dialog", true);
     },
@@ -30,7 +30,7 @@ export default {
     quit() {
       localStorage.removeItem("token");
       this.userStatus(undefined);
-      this.messagePush({ flag: "pass", text: "已退出" });
+      // this.messagePush({ flag: "pass", text: "已退出" });
     },
     leave() {
       if (this.content != "") {
@@ -43,7 +43,7 @@ export default {
         })
           .then(result => {
             if (result.data.returnCode === 0) {
-              this.messagePush({ flag: "pass", text: result.data.returnMsg });
+              // this.messagePush({ flag: "pass", text: result.data.returnMsg });
               this.$emit("getleaveword", 1);
               this.content = "";
             }
@@ -52,7 +52,7 @@ export default {
             console.log(err);
           });
       } else {
-        this.messagePush({ flag: "err", text: "多说一些" });
+        // this.messagePush({ flag: "err", text: "多说一些" });
       }
     },
     writeBack() {
@@ -72,7 +72,7 @@ export default {
           .then(result => {
             if (result.data.returnCode === 0) {
               this.$emit("hidewriteback");
-              this.messagePush({ flag: "pass", text: result.data.returnMsg });
+              // this.messagePush({ flag: "pass", text: result.data.returnMsg });
               this.$emit("updatelwriteback", this.reuser.o_id);
               this.content = "";
             }
@@ -81,7 +81,7 @@ export default {
             console.log(err);
           });
       } else {
-        this.messagePush({ flag: "err", text: "多说一些" });
+        // this.messagePush({ flag: "err", text: "多说一些" });
       }
     }
     // hideWriteBack(){

@@ -173,7 +173,7 @@ export default {
   },
   methods: {
     ...mapMutations(["userStatus"]),
-    ...mapActions(["messagePush"]),
+    // ...mapActions(["messagePush"]),
     verifyReg(item, ele) {
       // if (item.event === "keyup") {
       //   this.$set(item, "event", "keyup");
@@ -205,7 +205,7 @@ export default {
       return params;
     },
     setData(params) {
-      this.messagePush({ flag: "pass", text: params.returnMsg });
+      // this.messagePush({ flag: "pass", text: params.returnMsg });
       this.userStatus(params.data.user);
       this.$emit("dialog", false);
       localStorage.setItem("token", params.data.token);
@@ -231,7 +231,7 @@ export default {
               this.setData(result.data);
             } else {
               this.click = true;
-              this.messagePush({ flag: "err", text: result.data.returnMsg });
+              // this.messagePush({ flag: "err", text: result.data.returnMsg });
             }
           })
           .catch(err => {
@@ -253,7 +253,7 @@ export default {
               this.setData(result.data);
             } else {
               this.click = true;
-              this.messagePush({ flag: "err", text: result.data.returnMsg });
+              // this.messagePush({ flag: "err", text: result.data.returnMsg });
             }
           })
           .catch(err => {
