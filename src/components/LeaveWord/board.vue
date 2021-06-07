@@ -135,5 +135,121 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@import "../../scss/LeaveWord/board.scss";
+.Bjq {
+  margin: 2em 0 1em;
+  padding: 0 1em;
+  overflow: hidden;
+  button {
+    padding: 10px 0;
+    min-width: 150px;
+    margin: 10px 0;
+    display: block;
+    float: right;
+    background: #f7f3ee;
+    color: #9e886c;
+    border-radius: 5px;
+    border: 1px solid #e7ded2;
+  }
+  .icon-moon {
+    color: #e38fa9;
+    font-size: 18px;
+    margin-right: 5px;
+  }
+  .iconfont {
+    color: #e38fa9;
+    font-size: 18px;
+    margin-right: 5px;
+    font-family: iconfont !important;
+    font-size: 16px;
+    font-style: normal;
+  }
+  .editor_div {
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 auto;
+    word-wrap: break-word;
+    border-radius: 5px;
+    .editor_toolbar {
+      height: 40px;
+      line-height: 40px;
+      padding-left: 10px;
+      background: #f7f3ee;
+      border-radius: 5px 5px 0 0;
+      text-align: left;
+      margin-bottom: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: 3;
+      left: 1px;
+      top: 1px;
+      right: 1px;
+      .fr {
+        float: right;
+        cursor: pointer;
+        padding: 0 15px;
+      }
+    }
+    .editor_textarea {
+      width: 100%;
+      height: 150px;
+      overflow: auto;
+      box-sizing: border-box;
+      background: #fff;
+      text-align: left;
+      padding: 0;
+      textarea {
+        width: 100%;
+        height: 100%;
+        display: block;
+        padding-top: 50px;
+        border-radius: 5px;
+        &:hover,
+        &:focus {
+          border-color: #faad14;
+        }
+      }
+    }
+  }
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+  touch-action: manipulation;
+  appearance: none;
+  outline: none;
+}
+textarea.ant-input {
+  max-width: 100%;
+  height: auto;
+  min-height: 32px;
+  vertical-align: bottom;
+  transition: all 0.3s, height 0s;
+}
+.ant-input {
+  box-sizing: border-box;
+  margin: 0;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: "tnum", "tnum";
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 32px;
+  padding: 4px 11px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+@media screen and (max-width: 450px) {
+  .Bjq button {
+    width: 100%;
+  }
+}
+
 </style>

@@ -49,8 +49,7 @@ export default {
 };
 </script>
 <template>
-  <circleloading v-if="status" />
-  <div class="artical-detail" v-else>
+  <div class="artical-detail">
     <h1>{{content.title}}</h1>
     <div>{{content.description}}</div>
     <div v-html="content.content"></div>
@@ -59,5 +58,49 @@ export default {
 </template>
 
 <style lang="scss" >
-@import "../scss/See/index.scss";
+.artical-detail {
+  max-width: 1024px;
+  width: 100%;
+  padding: 0 1.5em;
+  margin: 4em auto;
+  line-height: 1.5em;
+  & > * {
+    margin-bottom: 2em;
+  }
+  h1 {
+    color: #111;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .artical-detail-date {
+    color: #948c76;
+    margin: 2em 0 5em;
+    font-size: 0.8em;
+  }
+  div,
+  p {
+    font-size: 1em;
+    text-align: justify;
+  }
+  pre {
+    display: block;
+    padding: 10px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    line-height: 1.5em;
+    overflow: auto;
+  }
+}
+code, kbd, pre, samp {
+    font-size: 1em;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
 </style>

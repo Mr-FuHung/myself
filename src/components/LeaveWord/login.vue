@@ -398,5 +398,251 @@ export default {
 </template>
 
 <style lang="scss" >
-@import "../../scss/LeaveWord/login.scss";
+.ant-modal-wrap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: auto;
+  outline: 0;
+}
+.ant-modal {
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+  font-feature-settings: "tnum", "tnum";
+  position: relative;
+  top: 100px;
+  width: auto;
+  margin: 0 auto;
+  padding: 0 0 24px;
+}
+.ant-modal-content {
+  position: relative;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.table-header {
+  color: rgba(0, 0, 0, 0.65);
+  border-radius: 4px 4px 0 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  & > div {
+    transition: all 0.3s linear;
+    flex-basis: 50%;
+    padding: 16px 0;
+    border-radius: 4px 4px 0 0;
+    box-shadow: inset 0 -1px 5px rgba(7, 7, 7, 0.671);
+    &:first-of-type {
+      border-right: 1px solid #e8e8e8;
+    }
+    &.active {
+      border-bottom: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.table-body {
+  // height: 140px;
+  max-height: 500px;
+  overflow: hidden;
+  padding: 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  transition: all 0.3s linear;
+  li {
+    position: relative;
+    line-height: 2.2;
+    // height: 32px;
+    zoom: 1;
+    margin-bottom: 1em;
+    box-sizing: border-box;
+    border-collapse: initial;
+    border-spacing: 0;
+    height: auto;
+    div {
+      height: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      span {
+        flex-basis: 20%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        background-color: #fafafa;
+        padding: 0 11px;
+        // word-break: keep-all;
+        // white-space: nowrap;
+        min-width: 90px;
+        &.error {
+          color: #f5222d;
+          background-color: #fff;
+          border-color: #f5222d;
+        }
+      }
+      > input {
+        flex-basis: 80%;
+        margin-left: -1px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding: 4px 11px;
+        color: rgba(0, 0, 0, 0.65);
+        &::placeholder {
+          color: #ccc;
+        }
+        &:focus {
+          outline: 0;
+          box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+        &:focus,
+        &:hover {
+          border-color: #40a9ff;
+          border-right-width: 1px !important;
+        }
+        &.error {
+          border-color: #f5222d;
+          &:focus {
+            outline: 0;
+            box-shadow: 0 0 0 2px rgba(245, 34, 45, 0.2);
+          }
+          &:focus,
+          &:hover {
+            border-color: #ff4d4f;
+            border-right-width: 1px !important;
+          }
+        }
+      }
+    }
+    .pass,
+    .err {
+      color: #52c41a;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      z-index: 1;
+      width: 32px;
+      height: 15px;
+      margin-top: -7.5px;
+      text-align: center;
+      animation: diffZoomIn1 0.3s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+      pointer-events: none;
+    }
+    .err {
+      color: #f5222d;
+    }
+    span,
+    input {
+      transition: all 0.3s;
+      font-size: 14px;
+      box-sizing: border-box;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+    }
+  }
+}
+.table-footer {
+  padding: 10px 16px;
+  text-align: center;
+  border-top: 1px solid #e8e8e8;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  button {
+  box-sizing: border-box;
+  text-decoration: none;
+    position: relative;
+    font-weight: 400;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    user-select: none;
+    touch-action: manipulation;
+    height: 32px;
+    padding: 0 15px;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    &.disabled {
+      border-color: #ececec !important;
+      background-color: #fff !important;
+      color: #ccc !important;
+      pointer-events: none;
+    }
+    &:first-of-type {
+      color: rgba(0, 0, 0, 0.65);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+      background-color: #fff;
+      &:hover {
+        color: #40a9ff;
+        background-color: #fff;
+        border-color: #40a9ff;
+      }
+      &:active {
+        color: #096dd9;
+        background-color: #fff;
+        border-color: #096dd9;
+      }
+    }
+    &:last-of-type {
+      color: #fff;
+      background-color: #1890ff;
+      border-color: #1890ff;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+      &:hover {
+        color: #fff;
+        background-color: #40a9ff;
+        border-color: #40a9ff;
+      }
+      &:active {
+        color: #fff;
+        background-color: #096dd9;
+        border-color: #096dd9;
+      }
+    }
+  }
+}
+.anticon{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10%;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -.125em;
+  .waiting {
+  
+    display: inline-block;
+    animation: waiting1 1s linear infinite;
+  }
+}
+
+@media (max-width: 767px) {
+  .ant-modal {
+    max-width: calc(100vw - 16px);
+    margin: 8px auto;
+  }
+}
+@keyframes waiting1 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
 </style>

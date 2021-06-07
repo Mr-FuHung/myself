@@ -1,13 +1,12 @@
 <script>
-import essay from "../components/Live/essay.vue";
 export default {
-  name:'live',
+  name: "live",
   data() {
     return {
       status: true,
       essayList: [],
       pageSize: 5,
-      pageNo: 1
+      pageNo: 1,
     };
   },
   created() {
@@ -15,41 +14,50 @@ export default {
       url: "/live/list.ajax",
       data: {
         pageSize: this.pageSize,
-        pageNo: this.pageNo
-      }
+        pageNo: this.pageNo,
+      },
     })
-      .then(result => {
+      .then((result) => {
         if (result.data.returnCode === 0) {
           this.essayList = result.data.data;
           this.status = false;
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         this.status = true;
       });
   },
-  components: {
-    // essay: () => import("../components/Live/essay.vue"),
-    essay
-  }
+  methods: {},
 };
 </script>
 <template>
-  <div class="Artical-box">
-    <loading v-if="status" />
-    <div v-else>
-      <essay :essay-data="item" v-for="(item,index) in essayList" :key="index" />
-
-      <div style="text-align: center;">
-        <button type="button" class="ant-btn">
-          <span>加载更多</span>
-        </button>
-      </div>
-    </div>
+  <div class="Artical-box" v-loading="true" element-loading-background="rgba(0, 0, 0, 0)">
+    <!-- <el-timeline>
+      <el-timeline-item timestamp="2018/4/12" placement="top">
+        <el-card>
+          <h4>更新 Github 模板</h4>
+          <p>王小虎 提交于 2018/4/12 20:46</p>
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item timestamp="2018/4/3" placement="top">
+        <el-card>
+          <h4>更新 Github 模板</h4>
+          <p>王小虎 提交于 2018/4/3 20:46</p>
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item timestamp="2018/4/2" placement="top">
+        <el-card>
+          <h4>更新 Github 模板</h4>
+          <p>王小虎 提交于 2018/4/2 20:46</p>
+        </el-card>
+      </el-timeline-item>
+    </el-timeline> -->
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../scss/Live/index.scss";
+.Artical-box {
+  min-height: 2rem;
+}
 </style>

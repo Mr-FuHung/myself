@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <el-container>
+      <!-- 头部 -->
       <el-header height="2.5rem">
         <div class="myPicture">
           <img alt="Vue logo" src="@/assets/images/me.png" />
@@ -12,16 +13,16 @@
           <router-link to="/leaveword">留言</router-link>
         </div>
       </el-header>
+      <!-- 内容 -->
       <el-main>
-        <keep-alive exclude="see,me">
           <!-- 页面缓存 -->
+        <keep-alive exclude="see,me">
           <router-view />
         </keep-alive>
         <!-- 返回顶部 -->
         <el-backtop :visibility-height="200"></el-backtop>
-        <download></download>
       </el-main>
-      <el-footer>Footer</el-footer>
+      <!-- <el-footer>Footer</el-footer> -->
     </el-container>
   </div>
 </template>
@@ -61,16 +62,16 @@ export default {
 };
 </script>
 <style lang="scss" >
-@import "@/scss/reset.scss";
-@import "@/scss/base.scss";
+@import "@/assets/scss/reset.scss";
+@import "@/assets/scss/base.scss";
 
 .routerActive {
   text-decoration: underline;
 }
 .el-main {
   padding: 0.2rem;
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.15);
-  background-color: #fff;
+  // box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.15);
+  // background-color: #fff;
   color: #3f1c1c;
   font-size: 0.14rem;
 }

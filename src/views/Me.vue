@@ -1,5 +1,6 @@
 <template>
   <div class="me">
+    <download />
     <div v-for="row in userData" :key="row.title">
       <div class="title">{{ row.title }}</div>
       <div class="default">
@@ -21,8 +22,12 @@
   </div>
 </template>
 <script>
+import download from "@/components/download.vue";
 export default {
   name: "me",
+  components: {
+    download,
+  },
   data() {
     this.userData = [
       {
@@ -92,8 +97,7 @@ export default {
           [
             {
               url: "https://www.redspite.com",
-              text:
-                "个人博客 - 使用 Vue + Vue-Router + VueX + Vue-cli 构建的个人网站，个人简历、文章及留言版展示",
+              text: "个人博客 - 使用 Vue + Vue-Router + VueX + Vue-cli 构建的个人网站，个人简历、文章及留言版展示",
             },
           ],
           [
@@ -104,8 +108,7 @@ export default {
           ],
           [
             {
-              text:
-                " 早期博客 - 纯静态页面（半成品），挂载在github访问速度很慢",
+              text: " 早期博客 - 纯静态页面（半成品），挂载在github访问速度很慢",
               url: "https://mr-fuhung.github.io/vitae/dist/index.html",
             },
           ],
