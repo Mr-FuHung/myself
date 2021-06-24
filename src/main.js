@@ -6,9 +6,9 @@ import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
 
-import http from '@/utils/http';
+import ajax from '@/utils/ajax';
 
-Vue.prototype.$http = http;//在Vue原型链挂载axios
+Vue.prototype.$ajax = ajax;//在Vue原型链挂载axios
 Vue.config.productionTip = false;
 
 

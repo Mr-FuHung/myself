@@ -26,7 +26,7 @@ export default {
 </script>
 <template>
   <div :class="['musicPic',status? 'rotate' :'']" @click="status=!status">
-    <img src="./../../assets/music.png" alt="music" />
+    <img src="./../../assets/images/music.png" alt="music" />
     <audio src="./../../assets/世界这么大还是遇见你.mp3" @canplay="loading" ref="audio" loop hidden autoplay></audio>
   </div>
 </template>

@@ -1,17 +1,2 @@
-html {
-	font-size: 100px;
-}
-
-body {
-	font-size: 0.14rem;
-	margin: 0.5rem auto 0;
-	color: #787978;
-	font-family: Microsoft Yahei;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	max-width: 800px;
-	width: 100%;
-	line-height: 1.5;
-	position: relative;
-	background: url('./assets/images/bg.jpg') repeat;
-}
+/* * 改变主题色变量 */
+$--color-primary: #9bdbdb;

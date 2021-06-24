@@ -9,7 +9,7 @@ export default {
     };
   },
   created() {
-    this.$http({
+    this.$ajax({
       url: "/live/fileContent.ajax",
       data: {
         id: this.$route.query.id

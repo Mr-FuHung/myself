@@ -45,7 +45,7 @@ export default {
               text: "Email：1002150110@qq.com",
             },
             {
-              text: location.origin,
+              text: `网站：${location.origin}`,
             },
           ],
         ],
@@ -57,20 +57,7 @@ export default {
           sm: 12,
         },
         list: [
-          [
-            {
-              text: "FH | 男 | 1996",
-            },
-            {
-              text: "前端开发 | 3 年工作经验",
-            },
-          ],
-          [
-            {
-              text: "期望职位：Web高级前端",
-            },
-            { text: "期望城市：上海" },
-          ],
+        
           [
             {
               url: "https://github.com/Mr-FuHung",
@@ -141,6 +128,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/base.scss";
 .me {
   .title {
     font-weight: 900;
@@ -148,7 +136,7 @@ export default {
     margin-bottom: 0.2rem;
     margin-left: -0.2rem;
     padding-left: 0.15rem;
-    border-left: 0.05rem solid #8fe3e3;
+    border-left: 0.05rem solid $--color-primary;
     text-align: left;
     color: #111;
   }

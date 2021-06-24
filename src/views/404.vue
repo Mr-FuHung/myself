@@ -9,7 +9,7 @@ export default {
 <template>
   <div class="ant-row rowStyle" style="margin-left: -8px; margin-right: -8px;">
     <div class="ant-col-14" style="padding-left: 8px; padding-right: 8px;">
-      <img width="100%" src="./../assets/404.svg" alt="none" />
+      <img width="100%" src="./../assets/images/404.svg" alt="none" />
     </div>
     <div class="ant-col-10" style="padding-left: 8px; padding-right: 8px;">
       <div class="statusStyle">404</div>

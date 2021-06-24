@@ -1,4 +1,4 @@
-import $http from '@utils/http'
+import $ajax from '@utils/ajax'
 
 export default {
     

@@ -31,7 +31,7 @@ export default {
     0 1px 10px 0 rgba(0, 0, 0, 0.12);
   position: fixed;
   right: 40px;
-  bottom:200px;
+  bottom:350px;
   cursor: pointer;
   &:active {
     background-color: #333;
