@@ -6,9 +6,11 @@ import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
 
-import ajax from '@/utils/ajax';
+import api from '@/api';
+// import ajax from '@/utils/ajax';
 
-Vue.prototype.$ajax = ajax;//在Vue原型链挂载axios
+Vue.prototype.$api = api;//在Vue原型链挂载axios
+// Vue.prototype.$ajax = ajax;//在Vue原型链挂载axios
 Vue.config.productionTip = false;
 
 

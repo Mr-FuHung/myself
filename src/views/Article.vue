@@ -1,46 +1,59 @@
 <script>
+import utils from "@/utils/utils.js";
 export default {
   name: "Article",
   data() {
     return {
-      articleList: [
-        {
-          content: "React Hook 系列（二）：React hooks",
-          timestamp: "2018-04-03 20:46",
-          color: "#e0efea",
-        },
-        {
-          content: "支持自定义颜色",
-          timestamp: "2018-04-03 20:46",
-          color: "#e0efea",
-        },
-        {
-          content: "支持自定义颜色",
-          timestamp: "2018-04-03 20:46",
-          color: "#e0efea",
-        },
-        {
-          content: "支持自定义颜色",
-          timestamp: "2018-04-03 20:46",
-          color: "#e0efea",
-        },
-      ],
+      articleList: [],
       pages: {
         pageSize: 5,
         pageNo: 1,
         tatol: 0,
       },
-      loading: false,
+      loading: true,
     };
   },
-  mounted() {},
+  mounted() {
+    this.getArticleList();
+  },
   methods: {
     async getArticleList() {
-      await this.$ajax({
-        url: "/article/list.ajax",
-        data: {
-          pageSize: this.pageSize,
-          pageNo: this.pageNo,
+      this.loading = true;
+      let {
+        data: { page, list },
+      } = await this.$api.getArticleList(this.pages);
+      this.pages.tatol = page.tatol;
+      this.loading = false;
+      list.forEach((item) => {
+        this.articleList.push({
+          title: item.title,
+          timestamp: utils.formateDate(
+            new Date(item.createTime),
+            "YYYY-MM-DD HH:mm"
+          ),
+          color: "#e0efea",
+          coverPic: item.coverPic,
+          desc: item.desc,
+          articleId: item.articleId,
+        });
+      });
+    },
+    toDetail(id, el) {
+      if (el) {
+        if (el.target.className === "el-timeline-item__timestamp is-top") {
+          return this.$router.push({
+            path: "/article/detail",
+            query: {
+              id: id,
+            },
+          });
+        }
+        return;
+      }
+      return this.$router.push({
+        path: "/article/detail",
+        query: {
+          id: id,
         },
       });
     },
@@ -59,14 +72,21 @@ export default {
         :key="index"
         :color="activity.color"
         size="large"
+        @click.native="toDetail(activity.articleId, $event)"
         :timestamp="activity.timestamp"
         placement="top"
       >
         <el-card>
-          <h4 class="title">{{ activity.content }}</h4>
+          <h4 class="title pointer">
+            <el-link @click="toDetail(activity.articleId)">{{
+              activity.title
+            }}</el-link>
+          </h4>
           <el-image
-            src="https://redspite.com/uploads/1587477767089.jpg"
-            style="width: 30%"
+            v-for="imgUrl in activity.coverPic"
+            :key="imgUrl"
+            :src="imgUrl"
+            style="width: 50%"
             flt="contain"
           >
             <div slot="placeholder" class="image-slot">
@@ -76,16 +96,7 @@ export default {
               <i class="el-icon-picture-outline"></i>
             </div>
           </el-image>
-          <p class="desc">
-            王小虎 提交于 2018/4/2 20:46王小虎 提交于 2018/4/2 20:46王小虎
-            提交于 2018/4/2 20:46王小虎 提交于 2018/4/2 20:46王小虎 提交于
-            2018/4/2 20:46王小虎 提交于 2018/4/2 20:46王小虎 提交于 2018/4/2
-            20:46王小虎 提交于 2018/4/2 20:46王小虎 提交于 2018/4/2 20:46王小虎
-            提交于 2018/4/2 20:46王小虎 提交于 2018/4/2 20:46王小虎 提交于
-            2018/4/2 20:46王小虎 提交于 2018/4/2 20:46王小虎 提交于 2018/4/2
-            20:46王小虎 提交于 2018/4/2 20:46王小虎 提交于 2018/4/2 20:46王小虎
-            提交于 2018/4/2 20:46
-          </p>
+          <p class="desc" v-text="activity.desc"></p>
         </el-card>
       </el-timeline-item>
     </el-timeline>
@@ -146,6 +157,9 @@ export default {
       font-size: 0.1rem;
       text-align: justify;
       color: #787978;
+    }
+    .pointer {
+      cursor: pointer;
     }
   }
   .el-card.is-always-shadow {

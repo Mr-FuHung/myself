@@ -15,7 +15,7 @@
     <!-- 内容 -->
     <el-main>
       <!-- 页面缓存 -->
-      <keep-alive exclude="see,me">
+      <keep-alive exclude="see,detail,me">
         <router-view />
       </keep-alive>
       <!-- 返回顶部 -->
