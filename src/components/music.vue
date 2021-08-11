@@ -29,7 +29,7 @@ export default {
 <template>
   <div>
     <el-tooltip class="item" effect="dark" placement="top">
-      <template #content> 单击：暂停<br />双击：管理播放列表 </template>
+      <template #content> 单击：暂停/播放 </template>
       <div
         :class="['musicPic', status ? 'rotate' : '']"
         @click="status = !status"
