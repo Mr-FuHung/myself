@@ -1,16 +1,19 @@
 <script>
 import utils from "@/utils/utils.js";
 import comment from "@/components/comment.vue";
+import cmtTree from "@/components/cmtTree.vue";
 export default {
   name: "detail",
   components: {
     comment,
+    cmtTree,
   },
   mounted() {
     this.getDetail(this.$route.query.id);
   },
   data() {
     return {
+      loading: true,
       article: {
         title: "",
         content: "",
@@ -27,17 +30,35 @@ export default {
         "YYYY-MM-DD"
       );
       Object.assign(this.article, data);
+      this.loading = false;
+    },
+    cmtTreeUpDate() {
+      this.$refs.cmtTree.pages.pageNo = 1;
+      this.$refs.cmtTree.updateTreeList();
     },
   },
 };
 </script>
 <template>
   <div class="article-detail">
-    <h1 class="title" v-text="article.title"></h1>
-    <div class="desc" v-text="article.desc"></div>
-    <div class="content" v-html="article.content"></div>
-    <div class="artical-detail-date" v-text="article.createTime"></div>
-    <comment title="评论" :articleId="$route.query.id" />
+    <el-skeleton :loading="loading" animated>
+      <template slot="template">
+        <el-skeleton :rows="6" animated />
+      </template>
+      <template>
+        <h1 class="title" v-text="article.title"></h1>
+        <div class="desc" v-text="article.desc"></div>
+        <div class="content" v-html="article.content"></div>
+        <div class="artical-detail-date" v-text="article.createTime"></div>
+      </template>
+    </el-skeleton>
+
+    <comment
+      title="评论"
+      :articleId="$route.query.id"
+      :cmtTreeUpDate="cmtTreeUpDate"
+    />
+    <cmtTree :articleId="$route.query.id" ref="cmtTree"/>
   </div>
 </template>
 <style lang="scss" >

@@ -10,6 +10,12 @@ export default {
       type: [Number, String],
       default: 1,
     },
+    showHeader: {
+      type: Boolean,
+      default: true,
+    },
+    reply: Object,
+    cmtTreeUpDate: Function,
   },
   data() {
     return {
@@ -54,8 +60,12 @@ export default {
           },
         ],
       },
-      userName: this.$store.state.userInfo.userName,
     };
+  },
+  computed: {
+    userName() {
+      return this.$store.state.userInfo.userName;
+    },
   },
   mounted() {},
   methods: {
@@ -76,7 +86,6 @@ export default {
         if (valid) {
           let { msg, data } = await this.$api.login(this.operateForm);
           this.$store.commit("saveUserInfo", data);
-          this.userName = data.userName;
           this.dialogLogin = false;
           this.$message.success(msg);
           this.handleReset("dialogForm");
@@ -84,8 +93,7 @@ export default {
       });
     },
     logout() {
-      this.$store.commit("saveUserInfo", null);
-      this.userName = "";
+      this.$store.commit("saveUserInfo", {});
     },
     //提交评论
     async commentSub() {
@@ -96,14 +104,22 @@ export default {
       let params = {
         content: this.content,
         articleId: this.articleId,
-        parentId: "111",
+        parentId: null,
         userInfo: {
           userId: user.userId,
           userName: user.userName,
           email: user.email,
+          webUrl: user.webUrl,
         },
       };
+      let reply = this.reply;
+      if (reply) {
+        params.parentId = reply.parentId;
+        params.replyId = reply.replyId;
+        params.replyName = reply.replyName;
+      }
       let { msg } = await this.$api.commentSubmit(params);
+      this.cmtTreeUpDate();
       this.$message.success(msg);
       this.content = "";
     },
@@ -112,7 +128,7 @@ export default {
 </script>
 <template>
   <div class="comment">
-    <el-dialog title="登录" :visible.sync="dialogLogin">
+    <el-dialog title="登录" width="520px" :visible.sync="dialogLogin">
       <el-form
         ref="dialogForm"
         size="medium"
@@ -144,11 +160,18 @@ export default {
     <h1>{{ title }}</h1>
     <div class="words">
       <div class="words_header">
-        <span>{{ userName ? `谢谢你的留言,${userName}~` : "请登录吧！" }}</span>
-        <span class="login_btn" @click="handleLogin" v-if="!userName"
-          >登录</span
-        >
-        <span class="login_btn" @click="logout" v-else>退出</span>
+        <template v-if="showHeader">
+          <span>{{
+            userName ? `谢谢你的留言,${userName}~` : "请登录吧！"
+          }}</span>
+          <span class="login_btn" @click="handleLogin" v-if="!userName"
+            >登录</span
+          >
+          <span class="login_btn" @click="logout" v-else>退出</span>
+        </template>
+        <template v-else>
+          <span>{{ `谢谢你的回复,${userName}~` }}</span>
+        </template>
       </div>
       <el-input
         type="textarea"
@@ -168,6 +191,7 @@ export default {
     >
       <button class="comment_sub" slot="reference">确 认</button>
     </el-popconfirm>
+    <p style="clear: both"></p>
   </div>
 </template>
 
@@ -223,6 +247,17 @@ export default {
       display: block;
       padding-top: 0.5rem;
       border-radius: 0.05rem;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .comment_sub {
+      width: 100%;
+    }
+  }
+  @media (max-width: 767px) {
+    .el-dialog {
+      max-width: calc(100vw - 0.16rem);
+      margin: 0.08rem auto;
     }
   }
 }

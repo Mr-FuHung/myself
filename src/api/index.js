@@ -18,10 +18,22 @@ export default {
         url: '/users/login.ajax',
         data
     }),
-    //登录
+    //提交评论
     commentSubmit: data => $ajax({
         method: 'post',
         url: '/comment/add.ajax',
         data
     }),
+    //获取评论列表
+    getCmtTree:data=>$ajax({
+        method: 'post',
+        url: '/comment/treeList.ajax',
+        data
+    }),
+    //获取评论列表
+    delComment:data=>$ajax({
+        method: 'delete',
+        url: '/comment/delComment.ajax',
+        data
+    })
 }

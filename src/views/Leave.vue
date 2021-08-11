@@ -1,6 +1,7 @@
 <script>
-import { mapMutations } from "vuex";
 import comment from "@/components/comment.vue";
+import cmtTree from "@/components/cmtTree.vue";
+import music from "@/components/music.vue";
 export default {
   name: "Leave",
   data() {
@@ -8,13 +9,28 @@ export default {
   },
   components: {
     comment,
+    cmtTree,
+    music,
   },
-  methods: {},
+  methods: {
+    cmtTreeUpDate() {
+      this.$refs.cmtTree.pages.pageNo = 1;
+      this.$refs.cmtTree.updateTreeList();
+    },
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      // beforeRouteEnter不能通过this访问组件实例，但是可以通过 vm 访问组件实例
+      vm.$refs.music.loading(); //vm即this
+    });
+  },
 };
 </script>
 <template>
   <div class="leave">
-    <comment />
+    <comment :cmtTreeUpDate="cmtTreeUpDate" />
+    <cmtTree ref="cmtTree" />
+    <music ref="music" />
   </div>
 </template>
 

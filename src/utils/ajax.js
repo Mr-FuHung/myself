@@ -4,9 +4,9 @@
 
 import axios from 'axios';
 import config from '@/config';
-import { ElMessage } from 'element-ui';
-import router from '@/router';
+import { Message } from 'element-ui';
 import storage from '@/utils/storage';
+import store from '@/store';
 
 const NETWORK_ERROR = '网络请求异常';
 const instance = axios.create({
@@ -26,7 +26,7 @@ instance.interceptors.request.use(request => {
     return request;
 }, error => {
     // 对请求错误做些什么
-    ElMessage.error(error || NETWORK_ERROR);
+    Message.error(error || NETWORK_ERROR);
     return Promise.reject(error);
 });
 
@@ -37,22 +37,22 @@ instance.interceptors.response.use(response => {
     if (code === 200) {
         return { data, msg };
     } else if (code === 40001) {
-        ElMessage.error(msg);
-        router.push({ name: 'login' })
+        Message.error(msg);
+        store.commit('saveUserInfo', {})
         return Promise.reject(msg);
     } else {
-        ElMessage.error(msg || NETWORK_ERROR);
+        Message.error(msg || NETWORK_ERROR);
         return Promise.reject(msg || NETWORK_ERROR);
     }
 }, error => {
     // 对响应错误做点什么
+    Message.error(error);
     return Promise.reject(error);
 });
 /* 
 *@param {*} options 请求配置
 * */
 function ajax(options) {
-    console.log('config', config)
     options.method = options.method || 'get';//默认get
     if (options.method.toLowerCase() === 'get') {
         options.params = options.data;//get请求传参改为统一的data

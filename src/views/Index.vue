@@ -19,7 +19,7 @@
         <router-view />
       </keep-alive>
       <!-- 返回顶部 -->
-      <el-backtop :visibility-height="100" :bottom="250" />
+      <el-backtop :visibility-height="100" :bottom="200" />
     </el-main>
     <!-- <el-footer>Footer</el-footer> -->
   </el-container>

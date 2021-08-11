@@ -3,7 +3,7 @@ export default {
   name: "music",
   data() {
     return {
-      status: true
+      status: true,
     };
   },
   created() {},
@@ -14,20 +14,36 @@ export default {
       } else {
         this.$refs.audio.pause();
       }
-    }
+    },
   },
+  mounted() {},
   methods: {
     loading() {
-      this.$refs.audio.play();
-    }
+      if (this.$refs.audio.readyState === 4 && this.status) {
+        this.$refs.audio.play();
+      }
+    },
   },
-  
 };
 </script>
 <template>
-  <div :class="['musicPic',status? 'rotate' :'']" @click="status=!status">
-    <img src="./../../assets/images/music.png" alt="music" />
-    <audio src="./../../assets/世界这么大还是遇见你.mp3" @canplay="loading" ref="audio" loop hidden autoplay></audio>
+  <div>
+    <el-tooltip class="item" effect="dark" placement="top">
+      <template #content> 单击：暂停<br />双击：管理播放列表 </template>
+      <div
+        :class="['musicPic', status ? 'rotate' : '']"
+        @click="status = !status"
+      >
+        <img src="@/assets/images/music.png" alt="music" />
+        <audio
+          src="@/assets/freeLoop.mp3"
+          @canplay="loading"
+          ref="audio"
+          loop
+          hidden
+        ></audio>
+      </div>
+    </el-tooltip>
   </div>
 </template>
 
@@ -61,10 +77,10 @@ export default {
 @media screen and (max-width: 1024px) {
   .musicPic {
     right: 10%;
-    bottom: 20%;
+    bottom: 10%;
   }
 }
-@keyframes rotate{
+@keyframes rotate {
   0% {
     -webkit-transform: rotate(0);
     transform: rotate(0);
@@ -73,6 +89,5 @@ export default {
     -webkit-transform: rotate(1turn);
     transform: rotate(1turn);
   }
-  
 }
 </style>

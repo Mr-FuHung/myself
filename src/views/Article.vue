@@ -8,9 +8,10 @@ export default {
       pages: {
         pageSize: 5,
         pageNo: 1,
-        tatol: 0,
+        total: 0,
       },
       loading: true,
+      moreLoading: false,
     };
   },
   mounted() {
@@ -18,12 +19,10 @@ export default {
   },
   methods: {
     async getArticleList() {
-      this.loading = true;
       let {
         data: { page, list },
       } = await this.$api.getArticleList(this.pages);
-      this.pages.tatol = page.tatol;
-      this.loading = false;
+      this.pages.total = page.total;
       list.forEach((item) => {
         this.articleList.push({
           title: item.title,
@@ -37,6 +36,8 @@ export default {
           articleId: item.articleId,
         });
       });
+      this.loading = false;
+      this.moreLoading = false;
     },
     toDetail(id, el) {
       if (el) {
@@ -57,49 +58,71 @@ export default {
         },
       });
     },
+    getMoreList() {
+      this.moreLoading = true;
+      this.pages.pageNo++;
+      this.getArticleList();
+    },
   },
 };
 </script>
 <template>
-  <div
-    class="Artical-box"
-    v-loading="loading"
-    element-loading-background="rgba(0, 0, 0, 0)"
-  >
-    <el-timeline>
-      <el-timeline-item
-        v-for="(activity, index) in articleList"
-        :key="index"
-        :color="activity.color"
-        size="large"
-        @click.native="toDetail(activity.articleId, $event)"
-        :timestamp="activity.timestamp"
-        placement="top"
-      >
-        <el-card>
-          <h4 class="title pointer">
-            <el-link @click="toDetail(activity.articleId)">{{
-              activity.title
-            }}</el-link>
-          </h4>
-          <el-image
-            v-for="imgUrl in activity.coverPic"
-            :key="imgUrl"
-            :src="imgUrl"
-            style="width: 50%"
-            flt="contain"
+  <div class="Artical-box">
+    <el-skeleton :loading="loading" animated>
+      <template slot="template">
+        <div style="padding: 14px">
+          <el-skeleton-item variant="h1" style="width: 30%" />
+           <el-skeleton-item variant="image" style="width:50%; height: 240px;margin-top:20px;" />
+          <el-skeleton-item variant="p" style="width: 60%;margin-top:20px" />
+          <el-skeleton-item variant="p" style="width: 60%;margin-top:20px"/>
+          <el-skeleton-item variant="p" style="width: 60%;margin-top:20px"/>
+        </div>
+      </template>
+      <template>
+        <el-timeline>
+          <el-timeline-item
+            v-for="(activity, index) in articleList"
+            :key="index"
+            :color="activity.color"
+            size="large"
+            @click.native="toDetail(activity.articleId, $event)"
+            :timestamp="activity.timestamp"
+            placement="top"
           >
-            <div slot="placeholder" class="image-slot">
-              加载中<span class="dot">...</span>
-            </div>
-            <div slot="error" class="image-slot">
-              <i class="el-icon-picture-outline"></i>
-            </div>
-          </el-image>
-          <p class="desc" v-text="activity.desc"></p>
-        </el-card>
-      </el-timeline-item>
-    </el-timeline>
+            <el-card>
+              <h4 class="title pointer">
+                <el-link @click="toDetail(activity.articleId)">{{
+                  activity.title
+                }}</el-link>
+              </h4>
+              <el-image
+                v-for="imgUrl in activity.coverPic"
+                :key="imgUrl"
+                :src="imgUrl"
+                style="width: 50%"
+                flt="contain"
+              >
+                <div slot="placeholder" class="image-slot">
+                  加载中<span class="dot">...</span>
+                </div>
+                <div slot="error" class="image-slot">
+                  <i class="el-icon-picture-outline"></i>
+                </div>
+              </el-image>
+              <p class="desc" v-text="activity.desc"></p>
+            </el-card>
+          </el-timeline-item>
+        </el-timeline>
+        <div class="more" v-loading="moreLoading">
+          <el-button
+            v-show="!moreLoading"
+            v-if="pages.pageSize * pages.pageNo < pages.total"
+            @click="getMoreList"
+            >加载更多</el-button
+          >
+        </div>
+      </template>
+    </el-skeleton>
   </div>
 </template>
 
@@ -167,6 +190,11 @@ export default {
   }
   .el-card__body {
     padding: 0;
+  }
+  .more {
+    text-align: center;
+    height: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 </style>
