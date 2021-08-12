@@ -58,7 +58,7 @@ export default {
       :articleId="$route.query.id"
       :cmtTreeUpDate="cmtTreeUpDate"
     />
-    <cmtTree :articleId="$route.query.id" ref="cmtTree"/>
+    <cmtTree :articleId="$route.query.id" ref="cmtTree" />
   </div>
 </template>
 <style lang="scss" >
@@ -69,6 +69,11 @@ export default {
   margin-bottom: 0.2rem;
 }
 .article-detail {
+  xmp,
+  code,
+  pre {
+    white-space: pre-wrap;
+  }
   color: #787978;
   .title {
     color: #111;
@@ -79,6 +84,7 @@ export default {
   .desc {
     font-size: 0.16rem;
     text-align: justify;
+    margin: 0.3rem 0 0.2rem;
   }
   .artical-detail-date {
     color: #948c76;
