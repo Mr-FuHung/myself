@@ -12,6 +12,15 @@ export default {
     cmtTree,
     music,
   },
+  render() {
+    return (
+      <div class="leave">
+        <comment cmtTreeUpDate={ this.cmtTreeUpDate } />
+        <cmtTree ref="cmtTree" />
+        <music ref="music" />
+      </div>
+    );
+  },
   methods: {
     cmtTreeUpDate() {
       this.$refs.cmtTree.pages.pageNo = 1;
@@ -26,13 +35,3 @@ export default {
   },
 };
 </script>
-<template>
-  <div class="leave">
-    <comment :cmtTreeUpDate="cmtTreeUpDate" />
-    <cmtTree ref="cmtTree" />
-    <music ref="music" />
-  </div>
-</template>
-
-<style lang="scss" >
-</style>

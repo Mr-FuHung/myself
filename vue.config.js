@@ -10,12 +10,12 @@ module.exports = {
     devServer: {
       proxy: {
         '/api': {
-          target: 'http://localhost:4000',
+          target: 'http://baron.ink/blog',
           changeOrigin: true,
           pathRewrite: { '^/api': '' }
         },
         '/': {
-          target: 'http://localhost:4000',
+          target: 'http://baron.ink/blog',
           changeOrigin: true,
           // pathRewrite: { '': '' }
         }

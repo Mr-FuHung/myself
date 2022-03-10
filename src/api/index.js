@@ -25,15 +25,19 @@ export default {
         data
     }),
     //获取评论列表
-    getCmtTree:data=>$ajax({
+    getCmtTree: data => $ajax({
         method: 'post',
         url: '/comment/treeList.ajax',
         data
     }),
     //获取评论列表
-    delComment:data=>$ajax({
+    delComment: data => $ajax({
         method: 'delete',
         url: '/comment/delComment.ajax',
         data
+    }),
+    //获取文章分类
+    getArticleClassify: () => $ajax({
+        url: '/articleClassify/all/list.ajax'
     })
 }

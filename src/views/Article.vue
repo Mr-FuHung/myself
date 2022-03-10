@@ -10,18 +10,50 @@ export default {
         pageNo: 1,
         total: 0,
       },
+      classTags: [
+        {
+          label: "全部",
+          value: "",
+        },
+      ],
+      active: "",
       loading: true,
       moreLoading: false,
     };
   },
   mounted() {
+    this.getArticleClassify();
     this.getArticleList();
   },
   methods: {
+    changeClass(value) {
+      if(this.active===value){
+        return;
+      }
+      this.active = value;
+      this.articleList = [];
+      this.pages.pageNo = 1;
+      this.pages.total = 0;
+      this.loading = true;
+      this.moreLoading = true;
+      this.getArticleList();
+    },
+    async getArticleClassify() {
+      let { data } = await this.$api.getArticleClassify();
+      data.forEach((item) => {
+        this.classTags.push({
+          label: item.articleClassName,
+          value: item.articleClassId,
+        });
+      });
+    },
     async getArticleList() {
       let {
         data: { page, list },
-      } = await this.$api.getArticleList(this.pages);
+      } = await this.$api.getArticleList({
+        ...this.pages,
+        articleClass: this.active,
+      });
       this.pages.total = page.total;
       list.forEach((item) => {
         this.articleList.push({
@@ -68,14 +100,27 @@ export default {
 </script>
 <template>
   <div class="Artical-box">
+    <ul class="articalClass">
+      <li
+        :class="{ active: active === item.value }"
+        v-for="item in classTags"
+        :key="item.value"
+        @click="changeClass(item.value)"
+      >
+        <span>{{ item.label }}</span>
+      </li>
+    </ul>
     <el-skeleton :loading="loading" animated>
       <template slot="template">
         <div style="padding: 14px">
           <el-skeleton-item variant="h1" style="width: 30%" />
-           <el-skeleton-item variant="image" style="width:50%; height: 240px;margin-top:20px;" />
-          <el-skeleton-item variant="p" style="width: 60%;margin-top:20px" />
-          <el-skeleton-item variant="p" style="width: 60%;margin-top:20px"/>
-          <el-skeleton-item variant="p" style="width: 60%;margin-top:20px"/>
+          <el-skeleton-item
+            variant="image"
+            style="width: 50%; height: 240px; margin-top: 20px"
+          />
+          <el-skeleton-item variant="p" style="width: 60%; margin-top: 20px" />
+          <el-skeleton-item variant="p" style="width: 60%; margin-top: 20px" />
+          <el-skeleton-item variant="p" style="width: 60%; margin-top: 20px" />
         </div>
       </template>
       <template>
@@ -129,6 +174,33 @@ export default {
 <style lang="scss" >
 .Artical-box {
   min-height: 2rem;
+  .articalClass {
+    list-style: none;
+    width: 100%;
+    height: 1rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    &::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
+    li {
+      &.active {
+        color: #9bdbdb;
+      }
+      display: inline-block;
+      span {
+        cursor: pointer;
+        display: inline-block;
+        user-select: none;
+        width: 1rem;
+      }
+    }
+  }
   .el-timeline-item__tail {
     border-color: #f7f3ee;
   }

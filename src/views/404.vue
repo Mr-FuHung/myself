@@ -1,23 +1,25 @@
 <script>
+import png404 from "./../assets/images/404.svg"
 export default {
   name: "err404",
-  data() {
-    return {};
-  }
+  render() {
+    return (
+      <div
+        class="ant-row rowStyle"
+        style="margin-left: -8px; margin-right: -8px;"
+      >
+        <div class="ant-col-14" style="padding-left: 8px; padding-right: 8px;">
+          <img width="100%" src={png404} alt="none" />
+        </div>
+        <div class="ant-col-10" style="padding-left: 8px; padding-right: 8px;">
+          <div class="statusStyle">404</div>
+          <div class="smallStyle">抱歉，你访问的页面不存在</div>
+        </div>
+      </div>
+    );
+  },
 };
 </script>
-<template>
-  <div class="ant-row rowStyle" style="margin-left: -8px; margin-right: -8px;">
-    <div class="ant-col-14" style="padding-left: 8px; padding-right: 8px;">
-      <img width="100%" src="./../assets/images/404.svg" alt="none" />
-    </div>
-    <div class="ant-col-10" style="padding-left: 8px; padding-right: 8px;">
-      <div class="statusStyle">404</div>
-      <div class="smallStyle">抱歉，你访问的页面不存在</div>
-    </div>
-  </div>
-</template>
-
 <style lang="scss" scoped>
 .ant-row {
   position: relative;
